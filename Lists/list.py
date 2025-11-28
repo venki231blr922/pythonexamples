@@ -236,6 +236,10 @@ print(fruits.index("Cherry"))
 print(fruits.count("Pineapple"))
 # 2 Thats the count of the value 'Pineapple' in the Lists
 
+# Pop the values using 'pop' method. pop method removes the last element/value in the Lists
+print(fruits.pop())
+# Banana will be popped from the list ['Pineapple', 'Pineapple', 'Orange', 'Cherry', 'Banana']
+
 # Clear the Lists using 'clear' method. Clear method clears all the values in Lists.
 fruits.clear()
 print(fruits)
@@ -258,4 +262,50 @@ print(f'1 in list1 -> {1 in list1}') # 1 in list1 -> True
 print(f'8 not in list3 -> {8 not in list3}') # 8 not in list3 -> True
 
 
-# More to come....
+# shallow copy
+ref_list1 = [1,2,3,[4,5]]
+ref_list2 = ref_list1
+print(id(ref_list1)) # memory address 1973392882304
+print(id(ref_list2)) # memory address 1973392882304, both refer to the same memory address
+
+shal_list1 = [1,2,3,[4,5]]
+shal_list2 = shal_list1[:]
+print(id(shal_list1)) # memory address 2025502915264
+print(id(shal_list2)) # different memory address 2025502915072 but have identical values in the list
+
+shal_list2[3][0] = 'A'
+shal_list2[3][1] = 'B'
+
+print(shal_list1) # [1, 2, 3, ['A', 'B']] we replaced the values in shal_list2, but since we had sha1_list2 = shal_lis1[:], results in shal_list1 will get affected
+
+# List comprehension
+list1 = [0,1,2,3,4,5,6,7,8,9,10]
+list2 = list1[:]
+print(list2) # result will be [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# regular for loop with lists
+list3 = []
+for i in list2:
+    list3.append(i)
+print(list3) # result will be [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Lists comprehension being used below
+list4 = [i for i in list3]
+print(list4) # result will be [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+list5 = [i for i in list4 if i%2 == 0]
+print(list5) # result will be [0, 2, 4, 6, 8, 10]
+
+list6 = [i*2 for i in list5 ]
+print(list6)# result will be [0, 4, 8, 12, 16, 20]
+
+# Multidimensional Lists
+mlist = [[1,2,3], [4,5,6], [7,8,9]]
+for r in mlist:
+    print(r)
+# result for above will be 
+# [1, 2, 3]
+# [4, 5, 6]
+# [7, 8, 9]
+print(mlist[0][1]) # 2
+print(mlist[1][0]) # 4

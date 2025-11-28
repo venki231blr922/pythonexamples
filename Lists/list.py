@@ -1,5 +1,5 @@
 '''
-This file provides detailed guide of Python List usage with examples
+This file provides detailed guide of Python Lists usage with examples
 '''
 
 # Lists are used to store multiple items of various data types in a single variable

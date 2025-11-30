@@ -200,3 +200,103 @@ for key, value in capitals.items():
 capitals.clear()
 print(capitals)
 # {} Cleared the values in the dicts
+
+
+# shallow copy
+capitals_dict1 = {"USA":"Washington D.C", "India":"New Delhi", "China":"Beijing", "Russia":"Moscow"}
+capitals_dict2 = capitals_dict1.copy() # another way to copy is capitals_dict2 = dict(capitals_dict1)
+print(id(capitals_dict1)) # memory address 2205494865408
+print(id(capitals_dict2)) # memory address is diff 2205494918912
+print(capitals_dict2) #
+
+
+# Nested dicts
+myfamily = {
+  "child1" : {
+    "name" : "Emil",
+    "year" : 2004
+  },
+  "child2" : {
+    "name" : "Tobias",
+    "year" : 2007
+  },
+  "child3" : {
+    "name" : "Linus",
+    "year" : 2011
+  }
+}
+
+print(myfamily) 
+# {'child1': {'name': 'Emil', 'year': 2004}, 'child2': {'name': 'Tobias', 'year': 2007}, 'child3': {'name': 'Linus', 'year': 2011}}
+
+child1 = {
+  "name" : "Emil",
+  "year" : 2004
+}
+child2 = {
+  "name" : "Tobias",
+  "year" : 2007
+}
+child3 = {
+  "name" : "Linus",
+  "year" : 2011
+}
+
+myfamily = {
+  "child1" : child1,
+  "child2" : child2,
+  "child3" : child3
+}
+
+print(myfamily)
+# {'child1': {'name': 'Emil', 'year': 2004}, 'child2': {'name': 'Tobias', 'year': 2007}, 'child3': {'name': 'Linus', 'year': 2011}} 
+
+# Access items in nested dicts
+print(myfamily["child2"]["name"])
+# Tobias
+
+# loop through nested dicts
+
+for x, obj in myfamily.items():
+  print(x)
+
+  for y in obj:
+    print(y + ':', obj[y])
+    
+# child1
+# name: Emil
+# year: 2004
+# child2
+# name: Tobias
+# year: 2007
+# child3
+# name: Linus
+# year: 2011
+
+# Del method in dicts to del a specific key:value
+
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+del thisdict["model"]
+print(thisdict)
+
+# Del method could also potentially delete the entire dict if we are not cautious
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+# del thisdict
+print(thisdict) #this will cause an error because "thisdict" no longer exists.
+
+# Add items to dict using
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict["color"] = "red"
+print(thisdict)

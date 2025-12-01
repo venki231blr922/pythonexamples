@@ -312,3 +312,112 @@ my_function(**person) # Same as: my_function(fname="Emil", lname="Refsnes")
 
 
 
+# Scope
+# Local scope
+# A variable created inside a function belongs to the local scope of that fucntion and can only be used inside that function
+
+def myFunc():
+    x = 300
+    print(x)
+
+myFunc()
+
+# function inside a function
+# the above example variable x is not available outside function, but is available inside the any function inside fucntion
+
+def myfunc():
+  x = 300
+  def myinnerfunc():
+    print(x)
+  myinnerfunc()
+
+myfunc()
+
+
+# Global scope
+# A vairable created in the main body of the python code and belongs to global scope
+# they are avilable from within any scope, global and local
+
+x = 300
+
+def myfunc():
+  print(x)
+
+myfunc()
+
+print(x)
+
+# Naming variables
+# if you operate the same variable name inside and outside a function, python will treat them as two diff variables, one available in global scope and one available in local scope ( inside function )
+x = 300 # global
+
+def myfunc():
+  x = 200 # local
+  print(x)
+
+myfunc() # local scope
+
+print(x) # global scope
+
+# 200
+# 300
+
+# Global keyword
+# if you need to create a global variable but are stuck in the local scope, use global keyword
+
+def myfunc():
+  global x
+  x = 300
+
+myfunc()
+
+print(x)
+
+# you can also change the value of global variable inside the function
+x = 300
+
+def myfunc():
+  global x
+  x = 200
+
+myfunc()
+
+print(x)
+
+
+# nonlocal keyword
+# if you use nonlocal keyword, the variable will belong to the outer function
+
+def myfunc1():
+  x = "Jane"
+  def myfunc2():
+    nonlocal x
+    x = "hello"
+  myfunc2()
+  return x
+
+print(myfunc1()) # hello
+
+# LEGB rule, python follows this rule when looking up variables names and searches for then in order.
+# 1. Local - inside function
+# 2. Enclosing - inside enclosing functions ( from inner to outer)
+# 3. Global - at the top level of the module
+# 4. Built-in -  in python's built in namespace
+
+x = "global"
+
+def outer():
+  x = "enclosing"
+  def inner():
+    x = "local"
+    print("Inner:", x)
+  inner()
+  print("Outer:", x)
+
+outer()
+print("Global:", x)
+
+# Inner: local
+# Outer: enclosing
+# Global: global
+
